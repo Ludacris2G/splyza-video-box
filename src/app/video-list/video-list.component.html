@@ -1,0 +1,21 @@
+<div class="video-list">
+  <button (click)="toggleView()">press this shit</button>
+
+  <!-- displaying videos based on the selected view -->
+  <div *ngIf="gridView; else listView">
+    <div *ngFor="let video of videos" class="video-card">
+      <!-- videos -->
+      <p>grid view</p>
+      <h2>{{ video.title }}</h2>
+      <p>{{ video.description }}</p>
+    </div>
+  </div>
+</div>
+
+<ng-template #listView>
+  <div class="video-list-item" *ngFor="let video of videos">
+    <p>list view</p>
+    <h3>{{ video.title }}</h3>
+    <p>{{ video.description }}</p>
+  </div>
+</ng-template>
