@@ -9,7 +9,9 @@ import { DatePipe } from '@angular/common';
 })
 export class VideoListComponent implements OnInit {
   videos: any[] = [];
-  gridView: boolean = true;
+  // to be set true after testing
+  showGrid: boolean = false;
+  loading: boolean = true;
 
   constructor(private videoService: VideoService, private datePipe: DatePipe) {}
 
@@ -20,11 +22,15 @@ export class VideoListComponent implements OnInit {
         ...video,
         createdDate: this.datePipe.transform(video.createdDate, 'MM/dd/yyy'),
       }));
+      this.loading = false;
     });
   }
 
-  toggleView() {
-    this.gridView = !this.gridView;
-    console.log(this.gridView);
+  showGridView() {
+    this.showGrid = true;
+  }
+
+  showListView() {
+    this.showGrid = false;
   }
 }
