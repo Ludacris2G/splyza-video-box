@@ -1,0 +1,176 @@
+$hover-color: #efefef
+$card-hover-transition: .2s all ease-in-out
+$white: #fff
+$gray: #888
+
+main
+    width: 100%
+
+.video-grid
+    display: grid
+    grid-template-columns: repeat(3, 270px)
+    grid-gap: 20px
+    place-content: center
+    transition: all .4s linear
+    padding-bottom: 1rem
+    @media (max-width: 880px)
+        grid-template-columns: repeat(2, 270px)
+    @media ( max-width: 600px  )
+        grid-template-columns: repeat(1, minmax(200px, 300px))
+
+.video-card
+    border: 1px solid #ddd
+    background-color: #f8f8f8
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1)
+    display: flex
+    flex-direction: column
+    height: 220px
+    justify-content: space-between
+    overflow: hidden
+    // hover effect on videos
+    &:hover
+        cursor: pointer
+        .video-info
+            background-color: $hover-color
+
+.video-image
+    height: 71%
+
+.video-info
+    padding: 6px
+    display: flex
+    flex-direction: column
+    background-color: $white
+    transition: $card-hover-transition
+    h2
+        font-size: .8rem
+        margin: 0
+        white-space: nowrap
+        overflow: hidden
+        text-overflow: ellipsis
+
+.video-details
+    display: flex
+    flex-direction: column
+    flex-grow: 1
+
+.video-bottom
+    display: flex
+    justify-content: space-between
+    p
+        font-size: .8rem
+        color: #8d8d8d
+
+.author-details
+    display: flex
+    justify-content: space-between
+    align-items: center
+
+.author-image
+    width: 20px
+    height: 20px
+    object-fit: cover
+    border-radius: 50%
+    margin-right: 7px
+
+.author
+    font-size: 0.8rem
+    color: #888
+    text-align: left
+
+    &
+        text-align: right
+
+.grid-btn,
+.list-btn
+    width: 45px
+    padding: 12px 34px
+    border-radius: 10px
+    border: none
+    transition: all .4s ease-in-out
+    display: flex
+    justify-content: center
+    background-color: $white
+    &:hover
+        background-color: #cccccc
+        cursor: pointer
+    img
+        width: 20px
+
+// changes dynamically when a button is active
+.active-btn
+    background-color: #cccccc
+.grayed-btn
+    filter: opacity(69%)
+
+.list-btn
+    margin-left: 5px
+
+.display-buttons
+    width: 100%
+    display: flex
+    justify-content: flex-end
+    padding: 15px 8% 15px 0
+
+// LIST VIEW STYLING ============================
+.video-list
+    display: flex
+    flex-direction: column
+
+.flex-list
+    display: flex
+    flex-direction: column
+    margin: 0 auto 0 auto
+    width: 90%
+
+.video-card-list
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    height: 70px
+    padding: 5px
+    border-radius: 8px
+    transition: $card-hover-transition
+    &:hover
+        background-color: $hover-color
+        cursor: pointer
+
+    .video-left
+        display: flex
+        flex-direction: row
+        align-items: center
+        max-width: calc(100% - 173px)
+        min-width: 195px
+        @media ( max-width: 500px  )
+            min-width: 160px
+        img
+            height: 100%
+            min-width: 108px
+            margin-right: 10px
+            border-radius: 6px
+            @media (max-width: 500px)
+                min-width: 80px
+        h2
+            font-size: 1rem
+            font-weight: 400
+            font-size: .8rem
+            margin: 0
+            white-space: nowrap
+            overflow: hidden
+            text-overflow: ellipsis
+    .video-right
+        display: flex
+        align-items: center
+        .date-author
+            margin-right: 70px
+            @media ( max-width: 500px  )
+                margin-right: 15px
+
+        p
+            color: #8d8d8d
+            font-size: 12px
+
+@media (max-width: 500px)
+    .video-card-list
+        p, h2
+            font-size: .6rem !important
