@@ -1,1 +1,48 @@
-<p>video-details works!</p>
+<main>
+  <div *ngIf="loading; else content">
+    <p>Loading...</p>
+  </div>
+
+  <ng-template #content>
+    <div *ngIf="videoData" class="video-data">
+      <div class="video-details-header">
+        <div class="title-bar">
+          <input
+            *ngIf="userIsAuthor"
+            type="text"
+            [(ngModel)]="videoData.title"
+            [ngModelOptions]="{ standalone: true }"
+            (ngModelChange)="onTitleChange()"
+          />
+          <p *ngIf="!userIsAuthor">{{ videoData.title }}</p>
+          <button
+            *ngIf="userIsAuthor"
+            [ngClass]="{ 'gray-button': !titleChanged }"
+          >
+            Save
+          </button>
+        </div>
+      </div>
+      <div class="video-container">
+        <video controls>
+          <source [src]="videoData.url" type="video/mp4" />
+        </video>
+      </div>
+      <div class="video-bottom">
+        <div class="reaction-buttons">
+          <button>
+            <img src="/assets/icons/star.png" alt="star icon" />
+            Star
+          </button>
+          <button>
+            <img src="/assets/icons/camera.png" alt="camera icon" /> Snapshot
+          </button>
+        </div>
+        <div class="author-details">
+          <img [src]="videoData.author.pictureUrl" alt="Author" />
+          <p>{{ videoData.author.name }}</p>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</main>
