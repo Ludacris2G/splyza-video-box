@@ -1,5 +1,9 @@
 <nav>
-  <a href="/">
+  <a href="/videos">
     <img src="/assets/icons/logo.png" alt="splyza logo" />
   </a>
+  <div class="user">
+    <img [src]="userData?.pictureUrl" alt="user picture" />
+    <p>{{ userData?.name }}</p>
+  </div>
 </nav>
