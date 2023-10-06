@@ -7,10 +7,17 @@ import { VideoListComponent } from './components/video-list/video-list.component
 import { HttpClientModule } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { VideoDetailsComponent } from './components/video-details/video-details.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent, VideoListComponent, NavbarComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  declarations: [
+    AppComponent,
+    VideoListComponent,
+    NavbarComponent,
+    VideoDetailsComponent,
+  ],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [DatePipe],
   bootstrap: [AppComponent],
 })
