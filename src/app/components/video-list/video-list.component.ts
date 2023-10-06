@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { VideoService } from '../video.service';
+import { VideoService } from '../../services/video/video.service';
 import { DatePipe } from '@angular/common';
 
 @Component({
@@ -9,8 +9,8 @@ import { DatePipe } from '@angular/common';
 })
 export class VideoListComponent implements OnInit {
   videos: any[] = [];
-  // to be set true after testing
-  showGrid: boolean = false;
+
+  showGrid: boolean = true;
   loading: boolean = true;
 
   constructor(private videoService: VideoService, private datePipe: DatePipe) {}
