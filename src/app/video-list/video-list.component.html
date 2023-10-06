@@ -1,21 +1,86 @@
-<div class="video-list">
-  <button (click)="toggleView()">press this shit</button>
+<main>
+  <div class="display-buttons">
+    <button
+      class="grid-btn"
+      (click)="showGridView()"
+      [class.active-btn]="showGrid"
+    >
+      <img
+        [class.grayed-btn]="!showGrid"
+        src="/assets/icons/grid-menu.png"
+        alt=""
+      />
+    </button>
+    <button
+      class="list-btn"
+      (click)="showListView()"
+      [class.active-btn]="!showGrid"
+    >
+      <img
+        [class.grayed-btn]="showGrid"
+        src="/assets/icons/list-menu.png"
+        alt=""
+      />
+    </button>
+  </div>
 
   <!-- displaying videos based on the selected view -->
-  <div *ngIf="gridView; else listView">
+
+  <!-- GRID VIEW -->
+  <div *ngIf="showGrid; else listView" class="video-grid">
+    <!-- videos -->
     <div *ngFor="let video of videos" class="video-card">
-      <!-- videos -->
-      <p>grid view</p>
-      <h2>{{ video.title }}</h2>
-      <p>{{ video.description }}</p>
+      <img
+        [src]="video.previewUrl"
+        alt="Video Preview Picture"
+        class="video-image"
+      />
+
+      <div class="video-info">
+        <h2>{{ video.title }}</h2>
+        <div class="video-details">
+          <div class="video-bottom">
+            <p class="date-author">{{ video.createdDate }}</p>
+            <div class="author-details">
+              <img
+                [src]="video.author.pictureUrl"
+                alt="Authors Image"
+                class="author-image"
+              />
+              <p>{{ video.author.name }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
+</main>
 
-<ng-template #listView>
-  <div class="video-list-item" *ngFor="let video of videos">
-    <p>list view</p>
-    <h3>{{ video.title }}</h3>
-    <p>{{ video.description }}</p>
+<!-- LIST VIEW -->
+<ng-template #listView class="video-list">
+  <div class="flex-list">
+    <div *ngFor="let video of videos" class="video-card-list">
+      <div class="video-left">
+        <img
+          [src]="video.previewUrl"
+          alt="Video Preview Picture"
+          class="video-image-list"
+        />
+        <h2>{{ video.title }}</h2>
+      </div>
+      <div class="video-right">
+        <p class="date-author">
+          {{ video.createdDate | date : "dd/MM/yyyy" }}
+        </p>
+        <div class="author-details">
+          <img
+            [src]="video.author.pictureUrl"
+            alt="Authors Image"
+            class="author-image"
+          />
+          <p>{{ video.author.name }}</p>
+        </div>
+      </div>
+    </div>
   </div>
 </ng-template>
