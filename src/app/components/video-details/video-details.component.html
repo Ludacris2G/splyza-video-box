@@ -18,19 +18,21 @@
           <button
             *ngIf="userIsAuthor"
             [ngClass]="{ 'gray-button': !titleChanged }"
+            [disabled]="!titleChanged"
+            (click)="updateVideoProperties()"
           >
             Save
           </button>
         </div>
       </div>
       <div class="video-container">
-        <video controls>
+        <video controls (timeupdate)="onVideoTimeUpdate($event)">
           <source [src]="videoData.url" type="video/mp4" />
         </video>
       </div>
       <div class="video-bottom">
         <div class="reaction-buttons">
-          <button>
+          <button (click)="addStarReaction()" [disabled]="!currentTimestamp">
             <img src="/assets/icons/star.png" alt="star icon" />
             Star
           </button>

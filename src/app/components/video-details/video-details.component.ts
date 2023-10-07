@@ -17,6 +17,8 @@ export class VideoDetailsComponent implements OnInit {
   userData: any;
   videoId: any;
   videoReactions: any;
+  originalTitle: any;
+  currentTimestamp: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -35,6 +37,7 @@ export class VideoDetailsComponent implements OnInit {
           (data: Object) => {
             this.videoData = data;
             this.loading = false;
+            this.originalTitle = this.videoData.title;
 
             this.userIsAuthor = this.isUserAuthor(this.videoData.author.id);
           },
@@ -46,6 +49,7 @@ export class VideoDetailsComponent implements OnInit {
       }
     });
 
+    // GET reactions
     this.reactionsService.getVideoReactions(this.videoId).subscribe(
       (reactions: any) => {
         console.log(reactions);
@@ -67,12 +71,13 @@ export class VideoDetailsComponent implements OnInit {
     return this.userData && authorId === this.userData.id;
   }
 
+  // monitor when title changes from original
   onTitleChange() {
-    this.titleChanged = true;
+    this.titleChanged = this.originalTitle !== this.videoData.title;
   }
 
+  // time formatter for timestamps
   formatTimeframe(timeframe: number): string {
-    console.log(timeframe);
     const hours = Math.floor(timeframe / 3600);
     const minutes = Math.floor((timeframe % 3600) / 60);
     const seconds = Math.floor(timeframe % 60);
@@ -83,7 +88,49 @@ export class VideoDetailsComponent implements OnInit {
     return formattedTimeframe;
   }
 
+  // helper function
   padZero(value: number): string {
     return value < 10 ? `0${value}` : `${value}`;
+  }
+
+  // update title when it differs from original title
+  updateVideoProperties() {
+    if (this.videoData.id) {
+      this.videoService
+        .updateVideoTitle(this.videoData.id, this.videoData.title)
+        .subscribe(
+          (data: any) => {
+            this.videoData = data;
+            this.titleChanged = false;
+          },
+          (error) => {
+            console.error(error);
+          }
+        );
+    }
+  }
+
+  // updates the video timestamp as it plays
+  onVideoTimeUpdate(event: any) {
+    const currentTime = event.target.currentTime;
+    this.currentTimestamp = currentTime;
+  }
+
+  // POST star
+  addStarReaction() {
+    const starReaction = {
+      videoId: this.videoData.id,
+      type: 'star',
+      timeframe: this.currentTimestamp,
+    };
+
+    this.reactionsService.addReaction(starReaction).subscribe(
+      (data: Object) => {
+        this.videoReactions = data;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
 }
