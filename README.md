@@ -2,9 +2,38 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.5.
 
+## Prerequisites
+
+Make sure you have the following tools installed:
+
+- Node.js
+- Angular CLI
+
+## Installation
+
+Clone the repository and install project dependencies:
+
+```
+git clone <repository-url>
+cd splyza-videobox
+npm install
+```
+
+## Client frontend app
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+
+## API
+
+This app is using the video-box-server API. To start the server:
+
+`cd video-box-server`
+
+`npm run start`
+
+by default it runs on `localhost:3000`
 
 ## Code scaffolding
 

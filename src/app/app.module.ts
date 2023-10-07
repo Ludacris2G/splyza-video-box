@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from './router/app-routing.module';
 import { AppComponent } from './app.component';
 import { VideoListComponent } from './components/video-list/video-list.component';
 import { HttpClientModule } from '@angular/common/http';
