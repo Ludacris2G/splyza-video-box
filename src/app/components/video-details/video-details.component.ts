@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { VideoDetailsService } from 'src/app/services/video-details.service';
 import { UserService } from 'src/app/services/user.service';
 import { VideoReactionsService } from 'src/app/services/video-reactions.service';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-video-details',
@@ -133,4 +134,37 @@ export class VideoDetailsComponent implements OnInit {
       }
     );
   }
+
+  addSnapshot() {
+    if (!this.currentTimestamp) {
+      return;
+    }
+    const captureElement: any = document.querySelector('#videoElement');
+    const canvas = document.createElement('canvas');
+    canvas.width = captureElement.videoWidth;
+    canvas.height = captureElement.videoHeight;
+    const context = canvas.getContext('2d');
+
+    context?.drawImage(captureElement, 0, 0, canvas.width, canvas.height);
+
+    const imageData = canvas.toDataURL('image/png');
+
+    const snapshotReaction = {
+      videoId: this.videoData.id,
+      type: 'snapshot',
+      timeframe: this.currentTimestamp,
+      dataUri: imageData,
+    };
+
+    this.reactionsService.addReaction(snapshotReaction).subscribe(
+      (data) => {
+        this.videoReactions = data;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
+  seekToTime(timeframe: number) {}
 }

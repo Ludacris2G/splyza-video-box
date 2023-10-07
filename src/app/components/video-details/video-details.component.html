@@ -25,8 +25,15 @@
           </button>
         </div>
       </div>
+      <!-- VIDEO PLAYER -->
       <div class="video-container">
-        <video controls (timeupdate)="onVideoTimeUpdate($event)">
+        <video
+          id="videoElement"
+          controls
+          (timeupdate)="onVideoTimeUpdate($event)"
+          #videoElement
+          crossorigin="anonymous"
+        >
           <source [src]="videoData.url" type="video/mp4" />
         </video>
       </div>
@@ -36,7 +43,7 @@
             <img src="/assets/icons/star.png" alt="star icon" />
             Star
           </button>
-          <button>
+          <button (click)="addSnapshot()">
             <img src="/assets/icons/camera.png" alt="camera icon" /> Snapshot
           </button>
         </div>
@@ -49,33 +56,40 @@
       <!-- reactions List -->
       <div class="reactions-list">
         <p class="reactions-title">Reactions</p>
-        <div *ngFor="let reaction of videoReactions" class="reaction-item-card">
-          <div class="left-side">
-            <div class="reaction-stamp">
-              <div *ngIf="reaction.type === 'star'" class="img-div">
-                <img src="/assets/icons/star.png" alt="star icon" />
+        <div *ngFor="let reaction of videoReactions">
+          <div
+            (click)="seekToTime(reaction.timeframe)"
+            class="reaction-item-card"
+          >
+            <div class="left-side">
+              <div class="reaction-stamp">
+                <div *ngIf="reaction.type === 'star'" class="img-div">
+                  <img src="/assets/icons/star.png" alt="star icon" />
+                </div>
+                <div *ngIf="reaction.type === 'snapshot'" class="img-div">
+                  <img src="/assets/icons/camera.png" alt="camera icon" />
+                </div>
+                <p>{{ formatTimeframe(reaction.timeframe) }}</p>
               </div>
-              <div *ngIf="reaction.type === 'snapshot'" class="img-div">
-                <img src="/assets/icons/camera.png" alt="camera icon" />
+              <div class="reaction-details">
+                <div *ngIf="reaction.type === 'star'">
+                  <p>{{ reaction.author.name }} starred a video</p>
+                </div>
+                <div *ngIf="reaction.type === 'snapshot'">
+                  <p>
+                    {{ reaction.author.name }} created a {{ reaction.type }}
+                  </p>
+                </div>
               </div>
-              <p>{{ formatTimeframe(reaction.timeframe) }}</p>
+              <p>{{ reaction.createdDate | date : "dd/MM/yyyy" }}</p>
             </div>
-            <div class="reaction-details">
-              <div *ngIf="reaction.type === 'star'">
-                <p>{{ reaction.author.name }} starred a video</p>
-              </div>
-              <div *ngIf="reaction.type === 'snapshot'">
-                <p>{{ reaction.author.name }} created a {{ reaction.type }}</p>
-              </div>
+            <div *ngIf="reaction.imageUrl">
+              <img
+                [src]="reaction.imageUrl"
+                alt="Reaction Image"
+                class="reaction-image"
+              />
             </div>
-            <p>{{ reaction.createdDate | date : "dd/MM/yyyy" }}</p>
-          </div>
-          <div *ngIf="reaction.imageUrl">
-            <img
-              [src]="reaction.imageUrl"
-              alt="Reaction Image"
-              class="reaction-image"
-            />
           </div>
         </div>
       </div>
