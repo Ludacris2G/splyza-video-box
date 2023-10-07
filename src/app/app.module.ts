@@ -9,6 +9,7 @@ import { DatePipe } from '@angular/common';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { VideoDetailsComponent } from './components/video-details/video-details.component';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,13 @@ import { FormsModule } from '@angular/forms';
     NavbarComponent,
     VideoDetailsComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    BrowserAnimationsModule,
+  ],
   providers: [DatePipe],
   bootstrap: [AppComponent],
 })
