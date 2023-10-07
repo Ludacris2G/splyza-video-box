@@ -1,13 +1,18 @@
+$hover-color: #efefef
+$card-hover-transition: .2s all ease-in-out
+
 main
     padding-top: 50px
 
 .video-data
     margin-left: auto
     margin-right: auto
-    width: 58%
+    width: 65%
     display: flex
     flex-direction: column
     margin-top: 40px
+    @media (max-width: 650px)
+        width: 80%
 
 .video-details-header
     .title-bar
@@ -69,4 +74,77 @@ main
 .title-bar
     display: flex
 
-// reusable button class
+// reactions styles
+.reactions-list
+    display: flex
+    flex-direction: column
+    margin-bottom: 20px
+    @media (max-width: 830px)
+        font-size: .7rem
+    .reactions-title
+        font-weight: 500
+    .reaction-item-card
+        display: flex
+        flex-direction: row
+        justify-content: space-between
+        height: 70px
+        padding: 5px
+        padding-left: 20px
+        border-radius: 8px
+        transition: $card-hover-transition
+        &:hover
+            background-color: $hover-color
+            cursor: pointer
+    .reaction-stamp
+        display: flex
+        align-items: center
+        margin-right: 35px
+        .img-div
+            display: flex
+            justify-content: center
+            margin-right: 20px
+        img
+            width: 20px
+            height: 20px
+            top: 2px
+    .reaction-details
+        display: flex
+        align-items: center
+        margin-right: 15px
+        p
+            margin: 0
+            white-space: pre-wrap
+            overflow: hidden
+            text-overflow: ellipsis
+            font-weight: 400
+    .reaction-image
+        height: 100%
+        min-width: 108px
+        border-radius: 6px
+        margin-left: 5px
+        @media (max-width: 500px)
+            min-width: 80px
+    .left-side
+        display: flex
+        align-items: center
+
+@media (max-width: 470px)
+    .reaction-details,
+    .img-div,
+    .reaction-stamp
+        margin-right: 5px !important
+    .reaction-item-card
+        padding-left: 0px !important
+    .video-data
+        width: 92%
+    .video-bottom
+        font-size: .8rem
+        justify-content: row
+    .reaction-buttons
+        button
+            width: 70px !important
+            height: 27px !important
+            padding: 5px
+            img
+                width: 17px !important
+                height: 17px !important
