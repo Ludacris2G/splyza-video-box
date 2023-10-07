@@ -4,13 +4,18 @@ $card-hover-transition: .2s all ease-in-out
 main
     padding-top: 50px
 
+.loading-text
+    font-size: 2rem
+    text-align: center
+    margin-top: 20px
+
 .video-data
     margin-left: auto
     margin-right: auto
     width: 65%
     display: flex
     flex-direction: column
-    margin-top: 40px
+    margin-top: 20px
     @media (max-width: 650px)
         width: 80%
 
@@ -20,19 +25,30 @@ main
         input
             flex-grow: 1
             border-radius: 5px
-            height: 30px
-            border: 1px solid black
+            height: 36px
+            border: 2px solid #8d8d8d
             margin-right: 8px
+            padding: 0 9px
         button
             background-color: #353392
             border-radius: 5px
             border: none
-            width: 60px
+            width: 76px
             color: white
             &:hover
                 cursor: pointer
 
 .video-container
+    position: relative
+    .star
+        position: absolute
+        bottom: 3%
+        right: 2%
+    img
+        height: 20px
+        width: 20px
+        filter: invert(1)
+
     video
         width: 100%
 
@@ -54,11 +70,13 @@ main
             display: flex
             align-items: center
             justify-content: space-evenly
+            font-weight: 600
             &:hover
                 cursor: pointer
             img
                 width: 20px
                 height: 20px
+                margin-top: -2px
     .author-details
         display: flex
         align-items: center
@@ -69,7 +87,7 @@ main
             margin-right: 5px
 
 .gray-button
-    background-color: gray !important
+    background-color: #737295 !important
 
 .title-bar
     display: flex
@@ -92,6 +110,7 @@ main
         padding-left: 20px
         border-radius: 8px
         transition: $card-hover-transition
+        font-size: .9rem
         &:hover
             background-color: $hover-color
             cursor: pointer
@@ -99,10 +118,12 @@ main
         display: flex
         align-items: center
         margin-right: 35px
+        font-weight: 500
         .img-div
             display: flex
             justify-content: center
             margin-right: 20px
+            filter: opacity(.4)
         img
             width: 20px
             height: 20px
@@ -148,3 +169,6 @@ main
             img
                 width: 17px !important
                 height: 17px !important
+
+.gray-text
+    color: rgb(141 141 141)

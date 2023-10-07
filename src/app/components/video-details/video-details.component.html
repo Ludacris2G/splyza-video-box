@@ -1,5 +1,5 @@
 <main>
-  <div *ngIf="loading; else content">
+  <div *ngIf="loading; else content" class="loading-text">
     <p>Loading...</p>
   </div>
 
@@ -36,15 +36,18 @@
         >
           <source [src]="videoData.url" type="video/mp4" />
         </video>
+        <div class="star" [@starAnimation]="starState">
+          <img src="/assets/icons/star.png" alt="shooting star" />
+        </div>
       </div>
       <div class="video-bottom">
         <div class="reaction-buttons">
+          <button (click)="addSnapshot()">
+            <img src="/assets/icons/camera.png" alt="camera icon" /> Snapshot
+          </button>
           <button (click)="addStarReaction()" [disabled]="!currentTimestamp">
             <img src="/assets/icons/star.png" alt="star icon" />
             Star
-          </button>
-          <button (click)="addSnapshot()">
-            <img src="/assets/icons/camera.png" alt="camera icon" /> Snapshot
           </button>
         </div>
         <div class="author-details">
@@ -55,7 +58,7 @@
 
       <!-- reactions List -->
       <div class="reactions-list">
-        <p class="reactions-title">Reactions</p>
+        <p class="reactions-title text-gray">Reactions</p>
         <div *ngFor="let reaction of videoReactions">
           <div
             (click)="seekToTime(reaction.timeframe)"
@@ -73,15 +76,22 @@
               </div>
               <div class="reaction-details">
                 <div *ngIf="reaction.type === 'star'">
-                  <p>{{ reaction.author.name }} starred a video</p>
+                  <p class="gray-text">
+                    {{ reaction.author.name }} starred a video
+                  </p>
                 </div>
                 <div *ngIf="reaction.type === 'snapshot'">
-                  <p>
+                  <p class="gray-text">
                     {{ reaction.author.name }} created a {{ reaction.type }}
                   </p>
                 </div>
               </div>
-              <p>{{ reaction.createdDate | date : "dd/MM/yyyy" }}</p>
+              <p *ngIf="reaction.type === 'snapshot'" class="gray-text">
+                {{ reaction.createdDate | date : "dd/MM/yyyy" }}
+              </p>
+              <p *ngIf="reaction.type === 'star'" class="gray-text">
+                {{ reaction.postedDate | date : "dd/MM/yyyy" }}
+              </p>
             </div>
             <div *ngIf="reaction.imageUrl">
               <img

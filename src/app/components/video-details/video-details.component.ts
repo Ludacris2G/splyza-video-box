@@ -3,12 +3,25 @@ import { ActivatedRoute } from '@angular/router';
 import { VideoDetailsService } from 'src/app/services/video-details.service';
 import { UserService } from 'src/app/services/user.service';
 import { VideoReactionsService } from 'src/app/services/video-reactions.service';
-import html2canvas from 'html2canvas';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+} from '@angular/animations';
 
 @Component({
   selector: 'app-video-details',
   templateUrl: './video-details.component.html',
   styleUrls: ['./video-details.component.sass'],
+  animations: [
+    trigger('starAnimation', [
+      state('visible', style({ transform: 'translateY(0)', opacity: 1 })),
+      state('hidden', style({ transform: 'translateY(-250px)', opacity: 0 })),
+      transition('visible => hidden', [animate('2s')]),
+    ]),
+  ],
 })
 export class VideoDetailsComponent implements OnInit {
   videoData: any = {};
@@ -20,6 +33,7 @@ export class VideoDetailsComponent implements OnInit {
   videoReactions: any;
   originalTitle: any;
   currentTimestamp: any;
+  starState = 'hidden';
 
   constructor(
     private route: ActivatedRoute,
@@ -103,6 +117,7 @@ export class VideoDetailsComponent implements OnInit {
           (data: any) => {
             this.videoData = data;
             this.titleChanged = false;
+            this.originalTitle = this.videoData.title;
           },
           (error) => {
             console.error(error);
@@ -119,6 +134,13 @@ export class VideoDetailsComponent implements OnInit {
 
   // POST star
   addStarReaction() {
+    if (!this.currentTimestamp) return;
+    this.starState = 'visible';
+
+    setTimeout(() => {
+      this.starState = 'hidden';
+    }, 2000);
+
     const starReaction = {
       videoId: this.videoData.id,
       type: 'star',
@@ -166,5 +188,12 @@ export class VideoDetailsComponent implements OnInit {
     );
   }
 
-  seekToTime(timeframe: number) {}
+  seekToTime(timeframe: number) {
+    if (!timeframe) return;
+
+    const video: any = document.querySelector('#videoElement');
+
+    video.currentTime = timeframe;
+    video.pause();
+  }
 }
