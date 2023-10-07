@@ -15,25 +15,27 @@ Clone the repository and install project dependencies:
 
 ```
 git clone <repository-url>
-cd splyza-videobox
+cd splyza-video-box
 npm install
 ```
 
-## Client frontend app
+Clone the backend API app.
+
+`git clone https://github.com/splyza/video-box-server.git`
+
+`cd splyza-video-box`
+
+`npm run start`
+
+By default it runs on `localhost:3000`
+
+If the localhost is different please update the environment.ts file with the actual path. The app won't work otherwise.
+
+Once the path is set, you can `cd ..` back to the root server and use `ng serve` to start the client app. If the environment.ts is running on localhost:3000 or is properly set to whatever path you may be using, the app should work flawlessly.
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## API
-
-This app is using the video-box-server API. To start the server:
-
-`cd video-box-server`
-
-`npm run start`
-
-by default it runs on `localhost:3000`
 
 ## Code scaffolding
 
