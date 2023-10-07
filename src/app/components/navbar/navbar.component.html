@@ -1,6 +1,15 @@
 <nav>
   <a href="/videos">
-    <img src="/assets/icons/logo.png" alt="splyza logo" />
+    <img
+      *ngIf="!isVideosRoute()"
+      src="/assets/icons/logo.png"
+      alt="splyza logo"
+      class="logo"
+    />
+    <div *ngIf="isVideosRoute()" class="back-div">
+      <img src="/assets/icons/back.jpg" alt="back arrow" class="back-arrow" />
+      <p>Back</p>
+    </div>
   </a>
   <div class="user">
     <img [src]="userData?.pictureUrl" alt="user picture" />
