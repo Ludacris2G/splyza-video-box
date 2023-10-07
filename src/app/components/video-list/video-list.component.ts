@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { VideoService } from '../../services/video/video.service';
+import { VideoService } from '../../services/video.service';
 import { DatePipe } from '@angular/common';
 
 @Component({
@@ -15,17 +15,24 @@ export class VideoListComponent implements OnInit {
 
   constructor(private videoService: VideoService, private datePipe: DatePipe) {}
 
+  // fetch videos
   ngOnInit() {
-    this.videoService.getVideos().subscribe((data: any) => {
-      console.log(data);
-      this.videos = data.map((video: any) => ({
-        ...video,
-        createdDate: this.datePipe.transform(video.createdDate, 'MM/dd/yyy'),
-      }));
-      this.loading = false;
-    });
+    this.videoService.getVideos().subscribe(
+      (data: any) => {
+        this.videos = data.map((video: any) => ({
+          ...video,
+          createdDate: this.datePipe.transform(video.createdDate, 'MM/dd/yyy'),
+        }));
+        this.loading = false;
+      },
+      (error) => {
+        console.error(error);
+        this.loading = false;
+      }
+    );
   }
 
+  // toggle view
   showGridView() {
     this.showGrid = true;
   }

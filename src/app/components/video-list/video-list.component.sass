@@ -5,6 +5,7 @@ $gray: #888
 
 main
     width: 100%
+    padding-top: 50px
 
 .video-grid
     display: grid
@@ -12,7 +13,7 @@ main
     grid-gap: 20px
     place-content: center
     transition: all .4s linear
-    padding-bottom: 1rem
+    margin-bottom: 40px
     @media (max-width: 880px)
         grid-template-columns: repeat(2, 270px)
     @media ( max-width: 600px  )
@@ -111,6 +112,10 @@ main
     justify-content: flex-end
     padding: 15px 8% 15px 0
 
+a
+    text-decoration: none
+    color: inherit
+
 // LIST VIEW STYLING ============================
 .video-list
     display: flex
@@ -120,7 +125,8 @@ main
     display: flex
     flex-direction: column
     margin: 0 auto 0 auto
-    width: 90%
+    width: 83%
+    margin-bottom: 20px
 
 .video-card-list
     display: flex
@@ -130,6 +136,8 @@ main
     padding: 5px
     border-radius: 8px
     transition: $card-hover-transition
+    align-items: center
+    width: 100%
     &:hover
         background-color: $hover-color
         cursor: pointer
@@ -143,7 +151,7 @@ main
         @media ( max-width: 500px  )
             min-width: 160px
         img
-            height: 100%
+            height: 65px
             min-width: 108px
             margin-right: 10px
             border-radius: 6px
@@ -171,7 +179,19 @@ main
             color: #8d8d8d
             font-size: 12px
 
+.video-list-content
+    display: flex
+    justify-content: space-between
+    width: 100%
+
 @media (max-width: 500px)
     .video-card-list
         p, h2
             font-size: .6rem !important
+    .flex-list
+        width: 95%
+
+.loading-text
+    font-size: 2rem
+    text-align: center
+    margin-top: 20px
