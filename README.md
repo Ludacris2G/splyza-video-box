@@ -11,14 +11,6 @@ Make sure you have the following tools installed:
 
 ## Installation
 
-Clone the repository and install project dependencies:
-
-```
-git clone <repository-url>
-cd splyza-video-box
-npm install
-```
-
 Clone the backend API app.
 
 `git clone https://github.com/splyza/video-box-server.git`
@@ -28,6 +20,14 @@ Clone the backend API app.
 `npm run start`
 
 By default it runs on `localhost:3000`
+
+Clone the repository and install project dependencies:
+
+`git clone https://github.com/Ludacris2G/splyza-video-box.git`
+
+`cd splyza-video-box`
+
+`npm install`
 
 If the localhost path is different than `localhost:3000` please update the `environment.ts` file with the actual path. The app won't work otherwise.
 
