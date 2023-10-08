@@ -23,15 +23,15 @@ Clone the backend API app.
 
 `git clone https://github.com/splyza/video-box-server.git`
 
-`cd splyza-video-box`
+`npm install`
 
 `npm run start`
 
 By default it runs on `localhost:3000`
 
-If the localhost is different please update the environment.ts file with the actual path. The app won't work otherwise.
+If the localhost path is different than `localhost:3000` please update the `environment.ts` file with the actual path. The app won't work otherwise.
 
-Once the path is set, you can `cd ..` back to the root server and use `ng serve` to start the client app. If the environment.ts is running on localhost:3000 or is properly set to whatever path you may be using, the app should work flawlessly.
+Once the server is up and running use `ng serve` to start the client app. If the environment.ts is running on localhost:3000 or is properly set to the path you may be using, the app should work flawlessly.
 
 ## Development server
 
