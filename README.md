@@ -1,7 +1,7 @@
 # SplyzaVideoBox
 
 I built this project according to a figma file as a coding challenge and it got my first ever interview.
-I never worked with Angular before and I just speedrun it in 3 days. This was very fun to build.
+I never worked with Angular before and I just speedrun the documentation and managed to build the app in around 3 days. This was very fun to build.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.5.
 
